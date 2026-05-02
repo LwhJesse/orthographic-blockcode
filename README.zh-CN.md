@@ -136,15 +136,10 @@ whole    仅整词规则
 
 baseline cost 是逐字符输入目标文本的成本。block-code cost 通过搜索每个词的合法切分，并在当前 mapping 下选择最低成本输入路径来计算。
 
-对文章 $x$，CUDA 评估器概念上计算：
+对文章或语料 $x$，CUDA 评估器概念上计算：
 
 $$
-C(J, x)
-=
-C_{\mathrm{literal}}(x)
-+
-\sum_{w,d}
-n_x(w,d)\,c_J(w,d)
+C(J,x)=C_{\mathrm{literal}}(x)+\sum_{w,d} n_x(w,d)\,c_J(w,d)
 $$
 
 其中：
@@ -158,20 +153,10 @@ $$
 更大的优化目标可以写成：
 
 $$
-L(J; X)
-=
-C_{\mathrm{key}}(J, X)
-+
-\lambda C_{\mathrm{collision}}(J)
-+
-\mu C_{\mathrm{complexity}}(J)
-+
-\nu C_{\mathrm{ergonomics}}(J)
+L(J;X)=C_{\mathrm{key}}(J,X)+\lambda C_{\mathrm{collision}}(J)+\mu C_{\mathrm{complexity}}(J)+\nu C_{\mathrm{ergonomics}}(J)
 $$
 
 当前原型主要实现击键成本部分。冲突、复杂度和人机工程项属于后续研究路线。
-
----
 
 ## 5. 为什么它不是自动补全、速记或普通压缩
 

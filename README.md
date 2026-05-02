@@ -136,15 +136,10 @@ whole    only as a whole-word rule
 
 The baseline cost is the cost of typing the target text literally. The block-code cost is computed by searching legal segmentations of each word and selecting the lowest-cost input path under the current mapping.
 
-For an article $x$, the CUDA evaluator conceptually computes:
+For an article or corpus $x$, the CUDA evaluator conceptually computes:
 
 $$
-C(J, x)
-=
-C_{\mathrm{literal}}(x)
-+
-\sum_{w,d}
-n_x(w,d)\,c_J(w,d)
+C(J,x)=C_{\mathrm{literal}}(x)+\sum_{w,d} n_x(w,d)\,c_J(w,d)
 $$
 
 where:
@@ -152,26 +147,16 @@ where:
 - $w$ is a word;
 - $d$ is the following delimiter class;
 - $n_x(w,d)$ is the number of times the word/delimiter pair occurs in the article or corpus;
-- $c_J(w,d)$ is the minimum input cost under mapping $J$;
+- $c_J(w,d)$ is the minimum input cost for that pair under mapping $J$;
 - $C_{\mathrm{literal}}(x)$ is the cost of spans that are not handled by the word model.
 
 A larger optimization objective can be written as:
 
 $$
-L(J; X)
-=
-C_{\mathrm{key}}(J, X)
-+
-\lambda C_{\mathrm{collision}}(J)
-+
-\mu C_{\mathrm{complexity}}(J)
-+
-\nu C_{\mathrm{ergonomics}}(J)
+L(J;X)=C_{\mathrm{key}}(J,X)+\lambda C_{\mathrm{collision}}(J)+\mu C_{\mathrm{complexity}}(J)+\nu C_{\mathrm{ergonomics}}(J)
 $$
 
 The current prototype mainly implements the keystroke-cost part. Collision, complexity, and ergonomics terms are part of the research roadmap.
-
----
 
 ## 5. Why this is not autocomplete, stenography, or compression
 
