@@ -567,8 +567,6 @@ m1          tion_family   x
 
 ## 12. 文档
 
-## Documentation
-
 ### English
 
 - [Whitepaper](docs/WHITEPAPER.md)

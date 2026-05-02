@@ -1,30 +1,37 @@
+# Build outputs
 bin/
 build/
 build-*/
+build-cuda/
 out/
 *.o
 *.so
 *.a
 
+# Python
 __pycache__/
 *.py[cod]
 .venv/
 venv/
 .ipynb_checkpoints/
 
+# Archives
 *.zip
 *.tar.gz
 *.7z
 
+# Editor / IDE
 .vscode/
 .idea/
 *.swp
 *.swo
 
+# Local/private data
 data/local/
 corpora/
 *.private.txt
 
+# CUDA profiling
 *.nsys-rep
 *.qdrep
 *.nvvp

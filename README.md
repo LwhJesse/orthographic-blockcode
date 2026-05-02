@@ -9,7 +9,7 @@ This project asks a specific question:
 Orthographic BlockCode treats a text-entry code table as an object that can be **measured**, **compared**, and eventually **searched**. Given a rule table $J$ and an article or corpus $x$, the evaluator computes the theoretical input cost:
 
 $$
-F(J, x) = y
+F(J,x)=y
 $$
 
 where $y$ contains values such as total keystroke cost, baseline cost, saved keystrokes, and reduction ratio.
@@ -100,6 +100,8 @@ configuration
 
 These examples are not final recommended codes. They are small examples showing how the evaluator combines literal letters, encoded chunks, candidate ranks, and delimiters.
 
+---
+
 ## 3. Example rules currently included
 
 The current rule table is experimental and intentionally small. It exists to exercise the evaluator, not to define a final input method.
@@ -132,6 +134,8 @@ suffix   only at the end
 whole    only as a whole-word rule
 ```
 
+---
+
 ## 4. What exactly is computed?
 
 The baseline cost is the cost of typing the target text literally. The block-code cost is computed by searching legal segmentations of each word and selecting the lowest-cost input path under the current mapping.
@@ -158,16 +162,18 @@ $$
 
 The current prototype mainly implements the keystroke-cost part. Collision, complexity, and ergonomics terms are part of the research roadmap.
 
+---
+
 ## 5. Why this is not autocomplete, stenography, or compression
 
 | Related idea | Difference |
 |---|---|
-| Autocomplete | predicts from context; this project uses fixed code tables and fixed candidate order |
-| Text expansion | expands memorized abbreviations; this project compresses internal orthographic blocks |
-| Stenography / Plover | uses chorded input; this project uses ordinary sequential key events |
-| Keyboard layout optimization | moves characters across physical keys; this project maps orthographic units to input codes |
-| Huffman coding / compression | optimizes symbol codes; this project adds candidate ranks, delimiters, fallback, and human constraints |
-| Production IME | a usable input engine; this repository is currently an evaluator and search prototype |
+| Autocomplete | Predicts from context; this project uses fixed code tables and fixed candidate order. |
+| Text expansion | Expands memorized abbreviations; this project compresses internal orthographic blocks. |
+| Stenography / Plover | Uses chorded input; this project uses ordinary sequential key events. |
+| Keyboard layout optimization | Moves characters across physical keys; this project maps orthographic units to input codes. |
+| Huffman coding / compression | Optimizes symbol codes; this project adds candidate ranks, delimiters, fallback, and human constraints. |
+| Production IME | A usable input engine; this repository is currently an evaluator and search prototype. |
 
 ---
 
@@ -178,7 +184,7 @@ A mapping table is not treated as a fixed hand-written artifact. It is treated a
 The evaluator computes:
 
 $$
-F(J, x) = y
+F(J,x)=y
 $$
 
 where $J$ is a rule table, $x$ is an article or corpus, and $y$ contains cost metrics.
@@ -186,7 +192,7 @@ where $J$ is a rule table, $x$ is an article or corpus, and $y$ contains cost me
 A local modification of the code table can be written as:
 
 $$
-J' = J + \delta J
+J'=J+\delta J
 $$
 
 where $\delta J$ may be one of:
@@ -203,7 +209,7 @@ split_group(group)
 The measured effect is:
 
 $$
-\Delta F = F(J', x) - F(J, x)
+\Delta F=F(J',x)-F(J,x)
 $$
 
 This gives a discrete search loop:
@@ -221,6 +227,8 @@ repeat
 ```
 
 The current CUDA backend is designed to evaluate many candidate mappings in a batch.
+
+---
 
 ## 7. System pipeline
 
@@ -249,7 +257,7 @@ CUDA batch evaluator compares many J'
 The important object is not one manually chosen mapping. The important object is the loop:
 
 $$
-J \rightarrow F(J, x) \rightarrow J'
+J \rightarrow F(J,x) \rightarrow J'
 $$
 
 This loop makes code-table design measurable and searchable.
@@ -282,20 +290,20 @@ The current CUDA backend is correctness-first and uses brute-force candidate-ran
 
 ## 9. Quickstart
 
-### 8.1 Platform status
+### 9.1 Platform status
 
 The CUDA backend targets **NVIDIA CUDA environments**. Python-side tools can run on more platforms, but the C++/CUDA evaluator requires `nvcc` and an NVIDIA GPU/driver stack.
 
 | Platform | Status | Notes |
 |---|---|---|
-| Debian / Ubuntu | primary target | NVIDIA's official CUDA Toolkit is recommended; distro package `nvidia-cuda-toolkit` may be old |
-| Fedora / RHEL / Rocky / Alma | primary target | NVIDIA's official CUDA repo is recommended |
-| Arch Linux | tested development environment | `cuda`, `ninja`, and `python` are available through `pacman` |
-| Windows via WSL2 | expected path | requires an NVIDIA Windows driver with WSL CUDA support |
-| Native Windows | not currently supported | current Ninja/CUDA scripts assume a Linux-like shell; use WSL2 |
-| macOS | CUDA backend unsupported | Python-side tools may still be useful, but CUDA evaluation requires NVIDIA CUDA |
+| Debian / Ubuntu | primary target | NVIDIA's official CUDA Toolkit is recommended; distro package `nvidia-cuda-toolkit` may be old. |
+| Fedora / RHEL / Rocky / Alma | primary target | NVIDIA's official CUDA repo is recommended. |
+| Arch Linux | tested development environment | `cuda`, `ninja`, and `python` are available through `pacman`. |
+| Windows via WSL2 | expected path | Requires an NVIDIA Windows driver with WSL CUDA support. |
+| Native Windows | not currently supported | Current Ninja/CUDA scripts assume a Linux-like shell; use WSL2. |
+| macOS | CUDA backend unsupported | Python-side tools may still be useful, but CUDA evaluation requires NVIDIA CUDA. |
 
-### 8.2 Common requirements
+### 9.2 Common requirements
 
 On any Linux distribution, the following commands should be available:
 
@@ -315,10 +323,9 @@ nvcc         NVIDIA CUDA compiler
 nvidia-smi   NVIDIA driver/GPU visibility check
 ```
 
-If `nvidia-smi` is unavailable, the NVIDIA driver stack is not ready.  
-If `nvcc` is unavailable, the CUDA Toolkit is missing or not in `PATH`.
+If `nvidia-smi` is unavailable, the NVIDIA driver stack is not ready. If `nvcc` is unavailable, the CUDA Toolkit is missing or not in `PATH`.
 
-### 8.3 Debian / Ubuntu
+### 9.3 Debian / Ubuntu
 
 Install basic tools:
 
@@ -355,7 +362,7 @@ RTX 30 series / Ampere: sm_86
 RTX 40 series / Ada:    sm_89
 ```
 
-### 8.4 Fedora / RHEL / Rocky / Alma
+### 9.4 Fedora / RHEL / Rocky / Alma
 
 Install basic tools:
 
@@ -379,7 +386,7 @@ ninja
 
 Package names and CUDA repo setup may vary across RHEL-family versions. This repository only assumes that `nvcc`, `ninja`, `python3`, and `nvidia-smi` are available.
 
-### 8.5 Arch Linux
+### 9.5 Arch Linux
 
 Arch is one of the tested development environments.
 
@@ -402,7 +409,7 @@ scripts/configure_ninja.sh sm_89
 ninja
 ```
 
-### 8.6 Windows via WSL2
+### 9.6 Windows via WSL2
 
 WSL2 is the recommended Windows path.
 
@@ -438,7 +445,7 @@ scripts/configure_ninja.sh sm_89
 ninja
 ```
 
-### 8.7 Native Windows
+### 9.7 Native Windows
 
 Native Windows builds are not currently supported.
 
@@ -452,7 +459,7 @@ Reasons:
 
 Windows users should use WSL2.
 
-### 8.8 macOS
+### 9.8 macOS
 
 The CUDA backend is not supported on macOS because modern macOS does not support NVIDIA CUDA.
 
@@ -467,7 +474,7 @@ What may still work:
 
 If a CPU-only C++ evaluator or Metal backend is added later, macOS support can be revisited.
 
-### 8.9 Run the CUDA sample
+### 9.9 Run the CUDA sample
 
 After building:
 
@@ -482,13 +489,13 @@ out/cuda_sample/cuda_summary.csv
 out/cuda_sample/cuda_summary.json
 ```
 
-### 8.10 Run a mapping batch
+### 9.10 Run a mapping batch
 
 ```bash
 scripts/run_cuda_batch.sh
 ```
 
-### 8.11 Generate and evaluate rule-code mutations
+### 9.11 Generate and evaluate rule-code mutations
 
 ```bash
 python tools/generate_rule_code_batch.py \
@@ -505,6 +512,8 @@ bin/blockcode_cuda_eval \
 
 sort -t, -k2,2n out/cuda_mutations/cuda_summary.csv | head -20
 ```
+
+---
 
 ## 10. Input files
 
@@ -567,8 +576,6 @@ Not included yet:
 
 ## 12. Documentation
 
-## Documentation
-
 ### English
 
 - [Whitepaper](docs/WHITEPAPER.md)
@@ -596,6 +603,8 @@ Not included yet:
 - [路线图](docs/ROADMAP.zh-CN.md)
 - [当前限制](docs/KNOWN_LIMITATIONS.zh-CN.md)
 
+---
+
 ## License
 
 This project is licensed under the Apache License 2.0.
@@ -606,4 +615,4 @@ SPDX identifier:
 Apache-2.0
 ```
 
-See [`LICENSE`](LICENSE).
+See [LICENSE](LICENSE).
