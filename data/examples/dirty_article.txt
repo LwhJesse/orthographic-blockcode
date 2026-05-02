@@ -1,0 +1,13 @@
+This is a dirty-input test.
+
+Normal words: see sea super contribution configuration implementation.
+Punctuation cases: see, sea, see; sea; see. sea. see? sea! see: sea:
+Code-like stuff: CFLAGS=-O3 -march=native; PATH=/usr/local/bin:$PATH; foo_bar(Baz42).
+URLs/emails: https://example.com/a-b_c?q=see&x=sea, contact: test.user+blockcode@example.org.
+Mixed language: 你好，世界。日本語テスト。Español: acción, corazón. Français: déjà vu.
+Typos/unknowns: seaa seee confffiguration implmentation micorstructure.
+Project names: SU2 OpenFOAM Hyprland LazyVim OpenSees CUDA fp16.
+Numbers: 12345 3.14159 2026-05-02.
+Weird spacing: see    sea
+newline-after-word see
+sea-after-newline.

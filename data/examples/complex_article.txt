@@ -1,0 +1,7 @@
+Orthographic compression is not merely a question of replacing long strings with short keys.
+A serious input method must survive punctuation, capitalization, code-like fragments, URLs, project names, and unknown technical vocabulary.
+In computational fluid dynamics, implementation details often include configuration files, preconditioners, microstructure models, rationalization of boundary conditions, and contribution analysis across many discretization schemes.
+The difficult words are not only long words such as internationalization, containerization, quantization, and characterization, but also historically irregular words such as through, though, thought, thorough, enough, knowledge, pressure, receiving, and believing.
+A usable system should type see, sea, see; sea; see. sea. without forcing unnecessary spaces.
+Dirty fragments such as CUDA_KERNEL_FLAGS=-O3, /usr/local/bin, OpenFOAMSolver, SU2, Hyprland, LazyVim, and 2026-05-02 should not destroy the evaluator.
+Non-English text such as 你好，世界 and déjà vu should fall back safely rather than pretending to be compressible English.

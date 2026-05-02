@@ -1,0 +1,84 @@
+rule_id	chunk	code	scope	class	enabled	group	note
+long_e	ee	u	any	vowel	1	long_e	ee/ea share code u
+long_e	ea	u	any	vowel	1	long_e	ee/ea share code u
+long_o	oo	v	any	vowel	1	long_o	oo/ou/ue share code v
+long_o	ou	v	any	vowel	1	long_o	oo/ou/ue share code v
+long_o	ue	v	any	vowel	1	long_o	oo/ou/ue share code v
+long_a	ai	a	any	vowel	1	long_a	ai/ay/ei share code a
+long_a	ay	a	any	vowel	1	long_a	ai/ay/ei share code a
+long_a	ei	a	any	vowel	1	long_a	ai/ay/ei share code a
+long_oa	oa	o	any	vowel	1	long_oa	oa/ow/oe share code o
+long_oa	ow	o	any	vowel	1	long_oa	oa/ow/oe share code o
+long_oa	oe	o	any	vowel	1	long_oa	oa/ow/oe share code o
+igh	igh	i	any	vowel	1	igh	igh block
+er	er	e	any	rhotic	1	er	er block
+ar	ar	r	any	rhotic	1	ar	ar block
+or	or	p	any	rhotic	1	or	or block
+ir_ur	ir	w	any	rhotic	1	ir_ur	ir/ur share code w
+ir_ur	ur	w	any	rhotic	1	ir_ur	ir/ur share code w
+tion_family	tion	j	suffix	suffix	1	tion_family	-tion/-sion/-cian family
+tion_family	sion	j	suffix	suffix	1	tion_family	-tion/-sion/-cian family
+tion_family	cian	j	suffix	suffix	1	tion_family	-tion/-sion/-cian family
+nominal_y	ation	y	suffix	suffix	1	nominal_y	long nominalization suffix
+nominal_y	ition	y	suffix	suffix	1	nominal_y	long nominalization suffix
+nominal_y	otion	y	suffix	suffix	1	nominal_y	long nominalization suffix
+nominal_y	ution	y	suffix	suffix	1	nominal_y	long nominalization suffix
+nominal_y	ization	y	suffix	suffix	1	nominal_y	long nominalization suffix
+nominal_y	isation	y	suffix	suffix	1	nominal_y	long nominalization suffix
+ing	ing	z	suffix	suffix	1	ing	-ing suffix
+ed	ed	d	suffix	suffix	1	ed	-ed suffix
+ment	ment	m	suffix	suffix	1	ment	-ment suffix
+ness	ness	n	suffix	suffix	1	ness	-ness suffix
+able_ible	able	b	suffix	suffix	1	able_ible	-able/-ible suffix
+able_ible	ible	b	suffix	suffix	1	able_ible	-able/-ible suffix
+ly	ly	l	suffix	suffix	1	ly	-ly/-ally suffix
+ly	ally	l	suffix	suffix	1	ly	-ly/-ally suffix
+ive	ive	v	suffix	suffix	1	ive	-ive suffix
+ity	ity	t	suffix	suffix	1	ity	-ity suffix
+ize_ise	ize	r	suffix	suffix	1	ize_ise	-ize/-ise suffix
+ize_ise	ise	r	suffix	suffix	1	ize_ise	-ize/-ise suffix
+th	th	q	any	consonant	1	th	th digraph
+sh	sh	x	any	consonant	1	sh	sh digraph
+ch_tch	ch	c	any	consonant	1	ch_tch	ch/tch
+ch_tch	tch	c	any	consonant	1	ch_tch	ch/tch
+ph	ph	f	any	consonant	1	ph	ph digraph
+wh	wh	w	prefix	consonant	1	wh	wh prefix
+ck	ck	k	any	consonant	1	ck	ck block
+ng	ng	n	any	consonant	1	ng	ng block
+gh	gh	h	any	consonant	1	gh	gh block
+qu	qu	q	any	consonant	1	qu	qu block
+con_com	con	c	prefix	prefix	1	con_com	con/com prefix
+con_com	com	c	prefix	prefix	1	con_com	con/com prefix
+pre_pro	pre	p	prefix	prefix	1	pre_pro	pre/pro prefix
+pre_pro	pro	p	prefix	prefix	1	pre_pro	pre/pro prefix
+trans	trans	x	prefix	prefix	1	trans	trans prefix
+s_clusters	str	s	any	cluster	1	s_clusters	common s cluster
+s_clusters	st	s	any	cluster	1	s_clusters	common s cluster
+s_clusters	sm	s	any	cluster	1	s_clusters	common s cluster
+s_clusters	sn	s	any	cluster	1	s_clusters	common s cluster
+s_clusters	sp	s	any	cluster	1	s_clusters	common s cluster
+s_clusters	sw	s	any	cluster	1	s_clusters	common s cluster
+tr	tr	r	any	cluster	1	tr	tr cluster
+pr_pl	pr	p	any	cluster	1	pr_pl	pr/pl cluster
+pr_pl	pl	p	any	cluster	1	pr_pl	pr/pl cluster
+br	br	b	any	cluster	1	br	br cluster
+cr_cl	cr	c	any	cluster	1	cr_cl	cr/cl cluster
+cr_cl	cl	c	any	cluster	1	cr_cl	cr/cl cluster
+dr	dr	d	any	cluster	1	dr	dr cluster
+fr_fl	fr	f	any	cluster	1	fr_fl	fr/fl cluster
+fr_fl	fl	f	any	cluster	1	fr_fl	fr/fl cluster
+gr_gl	gr	g	any	cluster	1	gr_gl	gr/gl cluster
+gr_gl	gl	g	any	cluster	1	gr_gl	gr/gl cluster
+the	the	q	whole	whole	1	the	whole-word shortcut
+and	and	a	whole	whole	1	and	whole-word shortcut
+of	of	o	whole	whole	1	of	whole-word shortcut
+to	to	t	whole	whole	1	to	whole-word shortcut
+in	in	i	whole	whole	1	in	whole-word shortcut
+is	is	s	whole	whole	1	is	whole-word shortcut
+that	that	h	whole	whole	1	that	whole-word shortcut
+for	for	f	whole	whole	1	for	whole-word shortcut
+with	with	w	whole	whole	1	with	whole-word shortcut
+this	this	x	whole	whole	1	this	whole-word shortcut
+can	can	k	whole	whole	1	can	whole-word shortcut
+not	not	g	whole	whole	1	not	whole-word shortcut
+but	but	u	whole	whole	1	but	whole-word shortcut

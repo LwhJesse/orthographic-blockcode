@@ -1,0 +1,26 @@
+# Direct Ninja build for CUDA backend.
+#
+# Usage:
+#   ninja
+#
+# Configure architecture:
+#   edit config.ninja, or run scripts/configure_ninja.sh sm_89
+#
+# Output:
+#   bin/blockcode_cuda_eval
+
+include config.ninja
+
+rule nvcc_cuda_exe
+  command = mkdir -p bin && $nvcc $cuda_flags $in -o $out
+  description = NVCC $out
+
+rule clean_outputs
+  command = rm -rf bin build-cuda out/cuda_sample out/cuda_batch out/cuda_greedy
+  description = CLEAN
+
+build bin/blockcode_cuda_eval: nvcc_cuda_exe cpp_cuda/blockcode_cuda_eval.cu
+
+build clean: clean_outputs
+
+default bin/blockcode_cuda_eval

@@ -1,0 +1,9 @@
+[project]
+name = "orthographic-blockcode"
+version = "0.3.0"
+description = "Research toolkit for English orthographic block-code input method evaluation."
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

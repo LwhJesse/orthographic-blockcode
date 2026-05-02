@@ -1,0 +1,22 @@
+# Direct Ninja configuration for blockcode CUDA backend.
+#
+# Edit this file if needed.
+#
+# Common CUDA architectures:
+#   RTX 20xx / Turing:      sm_75
+#   RTX 30xx / Ampere:      sm_86
+#   RTX 40xx / Ada:         sm_89
+#   Some datacenter GPUs:   sm_80 / sm_90
+#
+# If you are unsure, try:
+#   nvidia-smi --query-gpu=compute_cap --format=csv,noheader
+
+nvcc = nvcc
+cuda_arch = sm_86
+arch_flags = -arch=$cuda_arch
+
+# Debug alternative:
+# opt_flags = -O0 -g -G
+opt_flags = -O3
+
+cuda_flags = -std=c++20 $opt_flags $arch_flags --expt-relaxed-constexpr

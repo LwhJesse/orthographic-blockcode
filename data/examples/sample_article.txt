@@ -1,0 +1,4 @@
+This prototype treats English spelling as a stream of blocks.
+When the user types su, the decoder can see see and sea, but the stable order keeps see first and sea second.
+Longer words such as super, contribution, implementation, configuration, rationalization, receiving, believing, through, though, enough, knowledge, pressure, microstructure, writing, and running are handled by the same code table.
+Unknown names, code symbols, URLs, CFLAGS, and dirty punctuation fall back to raw spelling.

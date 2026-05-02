@@ -1,0 +1,38 @@
+{
+  "literal_letter_fallback": true,
+  "raw_prefix_cost": 1,
+  "max_encoded_word_len": 48,
+  "uppercase_extra_cost": 1,
+  "unknown_char_cost": 1,
+  "selection_costs": [
+    0,
+    1,
+    2,
+    2,
+    3,
+    3,
+    4,
+    4,
+    5,
+    5
+  ],
+  "unlisted_rank_cost": 99,
+  "candidate_preview": 10,
+  "max_candidate_rank": 3,
+  "commit_model": {
+    "rank1_key": ";",
+    "rank2_key": "'",
+    "bare_commit_cost": 1,
+    "eof_rank0_commit_cost": 0,
+    "punctuation_committers": [
+      ",",
+      ".",
+      "?",
+      "!",
+      ":",
+      ";"
+    ],
+    "auto_consume_space_after_punctuation": true,
+    "rank_selection_consumes_space_boundary": true
+  }
+}
