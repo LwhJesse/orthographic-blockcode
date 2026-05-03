@@ -54,23 +54,21 @@ total_cost
 
 Theoretical input cost under the evaluated mapping.
 
-### `$saved$`
+### `saved`
 
 Difference between baseline and block-code cost:
 
-$$
-saved = baseline\_total - total\_cost
-$$
+```text
+saved = baseline_total - total_cost
+```
 
-### `$reduction\_ratio$`
+### `reduction_ratio`
 
 Relative reduction:
 
-$$
-reduction\_ratio
-=
-\frac{baseline\_total - total\_cost}{baseline\_total}
-$$
+```text
+reduction_ratio = (baseline_total - total_cost) / baseline_total
+```
 
 ## Output files
 

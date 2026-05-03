@@ -24,20 +24,15 @@ The evaluator enumerates legal segmentations of a word, converts each segmentati
 
 The evaluation function is:
 
-$$
+```text
 F(J, x) = y
-$$
+```
 
 A corpus-level cost can be represented as:
 
-$$
-C(J, x)
-=
-C_{\mathrm{literal}}(x)
-+
-\sum_{w,d}
-n_x(w,d)c_J(w,d)
-$$
+```text
+C(J, x) = C_literal(x) + sum_{w,d} n_x(w, d) * c_J(w, d)
+```
 
 The current candidate policy is:
 

@@ -25,11 +25,6 @@ GPU 为大量 mapping 计算成本：
 
 语料级成本概念上为：
 
-$$
-C(J, x)
-=
-C_{\mathrm{literal}}(x)
-+
-\sum_{w,d}
-n_x(w,d)c_J(w,d)
-$$
+```text
+C(J, x) = C_literal(x) + sum_{w,d} n_x(w, d) * c_J(w, d)
+```

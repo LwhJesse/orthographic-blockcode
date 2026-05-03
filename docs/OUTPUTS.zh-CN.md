@@ -54,19 +54,21 @@ total_cost
 
 被评估 mapping 下的理论输入成本。
 
-### `$saved$`
+### `saved`
 
 baseline 和块码成本之差：
 
-$$
-saved = baseline\_total - total\_cost
-$$
+```text
+saved = baseline_total - total_cost
+```
 
-### `$reduction\_ratio$`
+### `reduction_ratio`
 
 相对减少比例：
 
-$$reduction\_ratio=\frac{baseline\_total - total\_cost}{baseline\_total}$$
+```text
+reduction_ratio = (baseline_total - total_cost) / baseline_total
+```
 
 ## 输出文件
 

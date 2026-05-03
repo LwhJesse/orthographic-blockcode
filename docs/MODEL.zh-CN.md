@@ -24,20 +24,15 @@ sea + 逗号 -> su;,
 
 评估函数是：
 
-$$
+```text
 F(J, x) = y
-$$
+```
 
 语料级成本可以表示为：
 
-$$
-C(J, x)
-=
-C_{\mathrm{literal}}(x)
-+
-\sum_{w,d}
-n_x(w,d)c_J(w,d)
-$$
+```text
+C(J, x) = C_literal(x) + sum_{w,d} n_x(w, d) * c_J(w, d)
+```
 
 当前候选策略为：
 

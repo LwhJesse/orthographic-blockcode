@@ -25,11 +25,6 @@ The current backend uses brute-force candidate-rank estimation. The scalable des
 
 The corpus-level cost is conceptually:
 
-$$
-C(J, x)
-=
-C_{\mathrm{literal}}(x)
-+
-\sum_{w,d}
-n_x(w,d)c_J(w,d)
-$$
+```text
+C(J, x) = C_literal(x) + sum_{w,d} n_x(w, d) * c_J(w, d)
+```

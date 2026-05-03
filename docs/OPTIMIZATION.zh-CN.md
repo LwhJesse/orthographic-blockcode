@@ -15,14 +15,14 @@ split_group(group)
 
 局部变分为：
 
-$$
-J' = J + \delta J
-$$
+```text
+J' = J + delta_J
+```
 
 测得的改进为：
 
-$$
-\Delta F = F(J', x) - F(J, x)
-$$
+```text
+Delta_F = F(J', x) - F(J, x)
+```
 
 当前 mutation 工具主要探索 `change_code`。后续优化器应加入规则发现、scope 变化、group 操作、beam search 和 simulated annealing。

@@ -6,13 +6,13 @@ This project asks a specific question:
 
 > Can Latin-script text entry be shortened by a learnable structural code table, without relying on autocomplete, AI prediction, or chorded stenography?
 
-Orthographic BlockCode treats a text-entry code table as an object that can be **measured**, **compared**, and eventually **searched**. Given a rule table $J$ and an article or corpus $x$, the evaluator computes the theoretical input cost:
+Orthographic BlockCode treats a text-entry code table as an object that can be **measured**, **compared**, and eventually **searched**. Given a rule table `J` and an article or corpus `x`, the evaluator computes the theoretical input cost:
 
-$$
-F(J,x)=y
-$$
+```text
+F(J, x) = y
+```
 
-where $y$ contains values such as total keystroke cost, baseline cost, saved keystrokes, and reduction ratio.
+where `y` contains values such as total keystroke cost, baseline cost, saved keystrokes, and reduction ratio.
 
 This repository is a research prototype. It is not a production input method.
 
@@ -140,25 +140,28 @@ whole    only as a whole-word rule
 
 The baseline cost is the cost of typing the target text literally. The block-code cost is computed by searching legal segmentations of each word and selecting the lowest-cost input path under the current mapping.
 
-For an article or corpus $x$, the CUDA evaluator conceptually computes:
+For an article or corpus `x`, the CUDA evaluator conceptually computes:
 
-$$
-C(J,x)=C_{\mathrm{literal}}(x)+\sum_{w,d} n_x(w,d)\,c_J(w,d)
-$$
+```text
+C(J, x) = C_literal(x) + sum_{w,d} n_x(w, d) * c_J(w, d)
+```
 
 where:
 
-- $w$ is a word;
-- $d$ is the following delimiter class;
-- $n_x(w,d)$ is the number of times the word/delimiter pair occurs in the article or corpus;
-- $c_J(w,d)$ is the minimum input cost for that pair under mapping $J$;
-- $C_{\mathrm{literal}}(x)$ is the cost of spans that are not handled by the word model.
+- `w` is a word;
+- `d` is the following delimiter class;
+- `n_x(w, d)` is the number of times the word/delimiter pair occurs in the article or corpus;
+- `c_J(w, d)` is the minimum input cost for that pair under mapping `J`;
+- `C_literal(x)` is the cost of spans that are not handled by the word model.
 
 A larger optimization objective can be written as:
 
-$$
-L(J;X)=C_{\mathrm{key}}(J,X)+\lambda C_{\mathrm{collision}}(J)+\mu C_{\mathrm{complexity}}(J)+\nu C_{\mathrm{ergonomics}}(J)
-$$
+```text
+L(J; X) = C_key(J, X)
+        + lambda * C_collision(J)
+        + mu * C_complexity(J)
+        + nu * C_ergonomics(J)
+```
 
 The current prototype mainly implements the keystroke-cost part. Collision, complexity, and ergonomics terms are part of the research roadmap.
 
@@ -183,19 +186,19 @@ A mapping table is not treated as a fixed hand-written artifact. It is treated a
 
 The evaluator computes:
 
-$$
-F(J,x)=y
-$$
+```text
+F(J, x) = y
+```
 
-where $J$ is a rule table, $x$ is an article or corpus, and $y$ contains cost metrics.
+where `J` is a rule table, `x` is an article or corpus, and `y` contains cost metrics.
 
 A local modification of the code table can be written as:
 
-$$
-J'=J+\delta J
-$$
+```text
+J' = J + delta_J
+```
 
-where $\delta J$ may be one of:
+where `delta_J` may be one of:
 
 ```text
 change_code(rule, key)
@@ -208,9 +211,9 @@ split_group(group)
 
 The measured effect is:
 
-$$
-\Delta F=F(J',x)-F(J,x)
-$$
+```text
+Delta_F = F(J', x) - F(J, x)
+```
 
 This gives a discrete search loop:
 
@@ -256,9 +259,9 @@ CUDA batch evaluator compares many J'
 
 The important object is not one manually chosen mapping. The important object is the loop:
 
-$$
-J \rightarrow F(J,x) \rightarrow J'
-$$
+```text
+J -> F(J, x) -> J'
+```
 
 This loop makes code-table design measurable and searchable.
 
