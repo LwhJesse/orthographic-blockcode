@@ -157,6 +157,7 @@ struct HostData {
   std::vector<int> article_counts; // [word_count * D_COUNT]
   int literal_base_cost = 0;
   int baseline_total = 0;
+  int uppercase_extra_total = 0;
 };
 
 static std::string trim_ascii(const std::string& s) {
@@ -358,6 +359,22 @@ static int literal_cost_char(unsigned char c) {
   return (c < 128) ? 1 : 1;
 }
 
+static size_t utf8_char_len(unsigned char c) {
+  if (c < 0x80) return 1;
+  if ((c >> 5) == 0x6) return 2;
+  if ((c >> 4) == 0xE) return 3;
+  if ((c >> 3) == 0x1E) return 4;
+  return 1;
+}
+
+static int uppercase_extra_ascii(const std::string& s) {
+  int total = 0;
+  for (unsigned char c : s) {
+    if (c >= 'A' && c <= 'Z') ++total;
+  }
+  return total;
+}
+
 __host__ __device__ static inline int delim_literal_cost(int d) {
   switch (d) {
     case D_EOF: return 0;
@@ -419,7 +436,15 @@ static void preprocess_article(const std::string& article_path, HostData& hd, Se
   hd.article_counts.assign(hd.words.size() * D_COUNT, 0);
   hd.literal_base_cost = 0;
   hd.baseline_total = 0;
-  for (unsigned char c : text) hd.baseline_total += literal_cost_char(c);
+  hd.uppercase_extra_total = 0;
+  for (size_t p = 0; p < text.size();) {
+    unsigned char c = static_cast<unsigned char>(text[p]);
+    hd.baseline_total += literal_cost_char(c);
+    p += utf8_char_len(c);
+  }
+  hd.uppercase_extra_total = uppercase_extra_ascii(text);
+  hd.baseline_total += hd.uppercase_extra_total;
+  hd.literal_base_cost += hd.uppercase_extra_total;
 
   size_t i = 0;
   while (i < text.size()) {
@@ -444,7 +469,7 @@ static void preprocess_article(const std::string& article_path, HostData& hd, Se
       }
     } else {
       hd.literal_base_cost += literal_cost_char(c);
-      i++;
+      i += utf8_char_len(c);
     }
   }
 }

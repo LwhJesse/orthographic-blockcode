@@ -1,8 +1,19 @@
 # C++ Engine Plan
 
-The current working evaluator is Python.
+This directory is a **plan and placeholder**, not the current runnable reference evaluator.
 
-The intended C++ engine should reproduce the same outputs, then become the CPU backend for optimization.
+Current status:
+
+- Python is the working reference evaluator.
+- `cpp/evaluator_skeleton.cpp` is only a skeleton.
+- The runnable compiled backend in this repository is the CUDA prototype in `cpp_cuda/`.
+
+For actual run commands, see:
+
+- [Repository README](../README.md)
+- [Detailed running guide](../docs/RUNNING.md)
+
+The intended C++ engine should eventually reproduce the Python outputs, then become the CPU backend for optimization.
 
 Target CLI:
 

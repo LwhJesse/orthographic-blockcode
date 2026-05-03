@@ -1,5 +1,13 @@
 # CUDA Plan
 
+This file is a design note for the CUDA backend shape.
+
+For actual build and run commands, see:
+
+- [Repository README](../README.md)
+- [Quickstart: Ninja CUDA Build](../QUICKSTART_NINJA.md)
+- [Detailed running guide](../docs/RUNNING.md)
+
 Do not put raw text parsing on GPU.
 
 GPU stage should receive integerized data:

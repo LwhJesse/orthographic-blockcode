@@ -171,6 +171,27 @@ class Evaluator:
         # selection commits word; next literal will be processed normally.
         return 1, code + select_key, 0
 
+    def raw_compare_extra_cost(self, delim: DelimiterInfo) -> int:
+        """Cost that raw fallback will still have to pay after the word.
+
+        Raw fallback does not consume the following delimiter in this evaluator.
+        The literal stream is processed later. But when comparing raw fallback
+        against an encoded `(word, following_delimiter)` path, we must include
+        delimiter cost that will inevitably be paid after the raw word.
+
+        This keeps raw-vs-encoded comparison in the same cost frame without
+        double-counting in the final token stream.
+        """
+        if delim.kind == "eof":
+            return 0
+        if delim.kind == "space":
+            return delim.consumed_len
+        if delim.kind == "punct":
+            return delim.consumed_len
+        if delim.kind == "newline":
+            return delim.consumed_len
+        return 0
+
     def best_word_result(self, token: str, delim: DelimiterInfo) -> WordResult:
         norm = token.lower()
         cache_key = (token, delim.kind, delim.literal, delim.consumed_len)
@@ -179,6 +200,7 @@ class Evaluator:
 
         baseline = self.baseline_word_cost(token)
         fallback = self.fallback_word_cost(token)
+        fallback_compare = fallback + self.raw_compare_extra_cost(delim)
         case_extra = self.case_extra(token)
 
         # Raw fallback does not consume the following delimiter. It is exact literal spelling.
@@ -252,7 +274,7 @@ class Evaluator:
                     best = res
 
         # Raw fallback may be cheaper, but it does not consume delimiter.
-        if best is None or raw_res.cost < best.cost:
+        if best is None or fallback_compare < best.cost:
             final = raw_res
         else:
             final = best

@@ -290,6 +290,25 @@ The current CUDA backend is correctness-first and uses brute-force candidate-ran
 
 ## 9. Quickstart
 
+This repository has **two different run paths**:
+
+- the **Python reference evaluator**, which is the current semantic reference;
+- the **CUDA batch evaluator**, which is the current compiled prototype backend.
+
+If you want the fastest end-to-end confirmation that the repository works, run the Python sample workflow first:
+
+```bash
+bash scripts/run_sample.sh
+pytest -q
+```
+
+For the full runnable matrix, outputs, and troubleshooting, read:
+
+- [Detailed running guide](docs/RUNNING.md)
+- [Ninja CUDA quickstart](QUICKSTART_NINJA.md)
+- [Chinese Ninja CUDA quickstart](QUICKSTART_NINJA.zh-CN.md)
+- [中文运行说明](docs/RUNNING.zh-CN.md)
+
 ### 9.1 Platform status
 
 The CUDA backend targets **NVIDIA CUDA environments**. Python-side tools can run on more platforms, but the C++/CUDA evaluator requires `nvcc` and an NVIDIA GPU/driver stack.
@@ -350,7 +369,7 @@ sudo apt install -y nvidia-cuda-toolkit
 Then build:
 
 ```bash
-scripts/configure_ninja.sh sm_89
+bash scripts/configure_ninja.sh sm_89
 ninja
 ```
 
@@ -380,7 +399,7 @@ nvidia-smi
 Then build:
 
 ```bash
-scripts/configure_ninja.sh sm_89
+bash scripts/configure_ninja.sh sm_89
 ninja
 ```
 
@@ -405,7 +424,7 @@ nvidia-smi
 Build:
 
 ```bash
-scripts/configure_ninja.sh sm_89
+bash scripts/configure_ninja.sh sm_89
 ninja
 ```
 
@@ -441,7 +460,7 @@ nvidia-smi
 Build:
 
 ```bash
-scripts/configure_ninja.sh sm_89
+bash scripts/configure_ninja.sh sm_89
 ninja
 ```
 
@@ -479,7 +498,7 @@ If a CPU-only C++ evaluator or Metal backend is added later, macOS support can b
 After building:
 
 ```bash
-scripts/run_cuda_sample.sh
+bash scripts/run_cuda_sample.sh
 ```
 
 Outputs:
@@ -492,7 +511,7 @@ out/cuda_sample/cuda_summary.json
 ### 9.10 Run a mapping batch
 
 ```bash
-scripts/run_cuda_batch.sh
+bash scripts/run_cuda_batch.sh
 ```
 
 ### 9.11 Generate and evaluate rule-code mutations
@@ -503,7 +522,7 @@ python tools/generate_rule_code_batch.py \
   --out out/mutations.tsv \
   --limit-rules 30
 
-bin/blockcode_cuda_eval \
+./bin/blockcode_cuda_eval \
   --rules configs/rules_v1.tsv \
   --lexicon data/examples/mini_lexicon.tsv \
   --article data/examples/sample_article.txt \
@@ -578,6 +597,10 @@ Not included yet:
 
 ### English
 
+- [Detailed running guide](docs/RUNNING.md)
+- [Ninja CUDA quickstart](QUICKSTART_NINJA.md)
+- [Python/CUDA sample compare script](scripts/compare_python_cuda_sample.sh)
+- [Python/CUDA dirty-text compare script](scripts/compare_python_cuda_dirty.sh)
 - [Whitepaper](docs/WHITEPAPER.md)
 - [Worked example](docs/WORKED_EXAMPLE.md)
 - [Output fields](docs/OUTPUTS.md)
@@ -592,6 +615,8 @@ Not included yet:
 ### Chinese
 
 - [中文 README](README.zh-CN.md)
+- [运行说明](docs/RUNNING.zh-CN.md)
+- [中文 CUDA quickstart](QUICKSTART_NINJA.zh-CN.md)
 - [白皮书](docs/WHITEPAPER.zh-CN.md)
 - [完整示例](docs/WORKED_EXAMPLE.zh-CN.md)
 - [输出字段](docs/OUTPUTS.zh-CN.md)

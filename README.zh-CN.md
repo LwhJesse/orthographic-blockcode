@@ -282,7 +282,26 @@ GPU 侧处理重复批量评估：
 
 ## 9. 快速开始
 
-### 8.1 平台支持状态
+本仓库有**两条不同的运行路径**：
+
+- **Python 参考评估器**，当前语义以它为准；
+- **CUDA batch evaluator**，当前可编译原型后端。
+
+如果你只是想先确认仓库“能跑”，建议先执行 Python 样例流程：
+
+```bash
+bash scripts/run_sample.sh
+pytest -q
+```
+
+完整运行矩阵、输出说明和故障排查请看：
+
+- [运行说明](docs/RUNNING.zh-CN.md)
+- [Detailed running guide](docs/RUNNING.md)
+- [Ninja CUDA quickstart](QUICKSTART_NINJA.md)
+- [中文 CUDA quickstart](QUICKSTART_NINJA.zh-CN.md)
+
+### 9.1 平台支持状态
 
 CUDA 后端面向 **NVIDIA CUDA 环境**。Python 侧工具可以在更多平台运行，但 C++/CUDA evaluator 需要 `nvcc` 和 NVIDIA GPU/驱动支持。
 
@@ -295,7 +314,7 @@ CUDA 后端面向 **NVIDIA CUDA 环境**。Python 侧工具可以在更多平台
 | Native Windows | 暂不支持 | 当前 Ninja/CUDA 构建脚本按 Linux-like shell 编写；建议用 WSL2 |
 | macOS | 不支持 CUDA 后端 | Apple Silicon/AMD/Intel Mac 没有 NVIDIA CUDA；可运行部分 Python 工具，但不能运行 CUDA evaluator |
 
-### 8.2 通用依赖
+### 9.2 通用依赖
 
 无论使用哪个 Linux 发行版，最终都需要这些命令可用：
 
@@ -318,7 +337,7 @@ nvidia-smi   检查 NVIDIA 驱动和 GPU
 如果 `nvidia-smi` 不可用，说明驱动侧还没配置好。  
 如果 `nvcc` 不可用，说明 CUDA Toolkit 没装好，或者 PATH 没配置好。
 
-### 8.3 Debian / Ubuntu
+### 9.3 Debian / Ubuntu
 
 安装基础工具：
 
@@ -343,7 +362,7 @@ sudo apt install -y nvidia-cuda-toolkit
 然后构建：
 
 ```bash
-scripts/configure_ninja.sh sm_89
+bash scripts/configure_ninja.sh sm_89
 ninja
 ```
 
@@ -355,7 +374,7 @@ RTX 30 series / Ampere: sm_86
 RTX 40 series / Ada:    sm_89
 ```
 
-### 8.4 Fedora / RHEL / Rocky / Alma
+### 9.4 Fedora / RHEL / Rocky / Alma
 
 安装基础工具：
 
@@ -373,13 +392,13 @@ nvidia-smi
 然后构建：
 
 ```bash
-scripts/configure_ninja.sh sm_89
+bash scripts/configure_ninja.sh sm_89
 ninja
 ```
 
 如果使用 RHEL 系衍生发行版，包名和 CUDA repo 配置可能随版本变化。本文档只要求最终 `nvcc`、`ninja`、`python3`、`nvidia-smi` 可用。
 
-### 8.5 Arch Linux
+### 9.5 Arch Linux
 
 Arch 是当前开发测试环境之一。安装：
 
@@ -398,11 +417,11 @@ nvidia-smi
 构建：
 
 ```bash
-scripts/configure_ninja.sh sm_89
+bash scripts/configure_ninja.sh sm_89
 ninja
 ```
 
-### 8.6 Windows via WSL2
+### 9.6 Windows via WSL2
 
 推荐 Windows 用户使用 WSL2，而不是 Native Windows。
 
@@ -434,11 +453,11 @@ nvidia-smi
 构建：
 
 ```bash
-scripts/configure_ninja.sh sm_89
+bash scripts/configure_ninja.sh sm_89
 ninja
 ```
 
-### 8.7 Native Windows
+### 9.7 Native Windows
 
 当前不支持 Native Windows 直接构建。
 
@@ -452,7 +471,7 @@ ninja
 
 Windows 用户建议使用 WSL2。
 
-### 8.8 macOS
+### 9.8 macOS
 
 macOS 不支持 CUDA 后端，因为现代 macOS 没有 NVIDIA CUDA 支持。
 
@@ -467,12 +486,12 @@ macOS 不支持 CUDA 后端，因为现代 macOS 没有 NVIDIA CUDA 支持。
 
 如果未来加入 CPU-only C++ evaluator 或 Metal backend，macOS 支持可以重新评估。
 
-### 8.9 运行 sample
+### 9.9 运行 sample
 
 构建完成后运行：
 
 ```bash
-scripts/run_cuda_sample.sh
+bash scripts/run_cuda_sample.sh
 ```
 
 输出会写入：
@@ -482,13 +501,13 @@ out/cuda_sample/cuda_summary.csv
 out/cuda_sample/cuda_summary.json
 ```
 
-### 8.10 运行 mapping batch
+### 9.10 运行 mapping batch
 
 ```bash
-scripts/run_cuda_batch.sh
+bash scripts/run_cuda_batch.sh
 ```
 
-### 8.11 生成并评估规则换键 mutations
+### 9.11 生成并评估规则换键 mutations
 
 ```bash
 python tools/generate_rule_code_batch.py \
@@ -496,7 +515,7 @@ python tools/generate_rule_code_batch.py \
   --out out/mutations.tsv \
   --limit-rules 30
 
-bin/blockcode_cuda_eval \
+./bin/blockcode_cuda_eval \
   --rules configs/rules_v1.tsv \
   --lexicon data/examples/mini_lexicon.tsv \
   --article data/examples/sample_article.txt \
@@ -569,6 +588,10 @@ m1          tion_family   x
 
 ### English
 
+- [Detailed running guide](docs/RUNNING.md)
+- [Ninja CUDA quickstart](QUICKSTART_NINJA.md)
+- [Python/CUDA sample compare script](scripts/compare_python_cuda_sample.sh)
+- [Python/CUDA dirty-text compare script](scripts/compare_python_cuda_dirty.sh)
 - [Whitepaper](docs/WHITEPAPER.md)
 - [Worked example](docs/WORKED_EXAMPLE.md)
 - [Output fields](docs/OUTPUTS.md)
@@ -582,7 +605,9 @@ m1          tion_family   x
 
 ### Chinese
 
-- [中文 README](README.zh-CN.md)
+- [英文 README](README.md)
+- [运行说明](docs/RUNNING.zh-CN.md)
+- [中文 CUDA quickstart](QUICKSTART_NINJA.zh-CN.md)
 - [白皮书](docs/WHITEPAPER.zh-CN.md)
 - [完整示例](docs/WORKED_EXAMPLE.zh-CN.md)
 - [输出字段](docs/OUTPUTS.zh-CN.md)
@@ -593,6 +618,9 @@ m1          tion_family   x
 - [相关方向](docs/RELATED_WORK.zh-CN.md)
 - [路线图](docs/ROADMAP.zh-CN.md)
 - [当前限制](docs/KNOWN_LIMITATIONS.zh-CN.md)
+
+---
+
 ## License
 
 本项目使用 Apache License 2.0 开源。
