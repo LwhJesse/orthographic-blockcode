@@ -8,7 +8,7 @@
 
 Orthographic BlockCode 把文本输入码表视为一个可以**测量**、**比较**并最终**搜索**的对象。给定规则表 `J` 和文章或语料 `x`，评估器计算理论输入成本：
 
-```text
+```math
 F(J, x) = y
 ```
 
@@ -138,7 +138,7 @@ baseline cost 是逐字符输入目标文本的成本。block-code cost 通过�
 
 对文章或语料 `x`，CUDA 评估器概念上计算：
 
-```text
+```math
 C(J, x) = C_literal(x) + sum_{w,d} n_x(w, d) * c_J(w, d)
 ```
 
@@ -152,11 +152,11 @@ C(J, x) = C_literal(x) + sum_{w,d} n_x(w, d) * c_J(w, d)
 
 更大的优化目标可以写成：
 
-```text
-L(J; X) = C_key(J, X)
-        + lambda * C_collision(J)
-        + mu * C_complexity(J)
-        + nu * C_ergonomics(J)
+```math
+L(J; X) = C_{\mathrm{key}}(J, X)
+        + \lambda C_{\mathrm{collision}}(J)
+        + \mu C_{\mathrm{complexity}}(J)
+        + \nu C_{\mathrm{ergonomics}}(J)
 ```
 
 当前原型主要实现击键成本部分。冲突、复杂度和人机工程项属于后续研究路线。
@@ -180,7 +180,7 @@ L(J; X) = C_key(J, X)
 
 评估器计算：
 
-```text
+```math
 F(J, x) = y
 ```
 
@@ -188,8 +188,8 @@ F(J, x) = y
 
 码表的局部修改可以写成：
 
-```text
-J' = J + delta_J
+```math
+J' = J + \delta J
 ```
 
 其中 `delta_J` 可以是：
@@ -205,8 +205,8 @@ split_group(group)
 
 测得的效果是：
 
-```text
-Delta_F = F(J', x) - F(J, x)
+```math
+\Delta F = F(J', x) - F(J, x)
 ```
 
 这形成一个离散搜索循环：
@@ -251,8 +251,8 @@ CUDA batch evaluator compares many J'
 
 重要对象不是某一张人工选择的 mapping，而是这个循环：
 
-```text
-J -> F(J, x) -> J'
+```math
+J \rightarrow F(J, x) \rightarrow J'
 ```
 
 这个循环让码表设计变得可测量、可搜索。

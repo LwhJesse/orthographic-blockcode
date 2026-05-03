@@ -58,7 +58,7 @@ Theoretical input cost under the evaluated mapping.
 
 Difference between baseline and block-code cost:
 
-```text
+```math
 saved = baseline_total - total_cost
 ```
 
@@ -66,7 +66,7 @@ saved = baseline_total - total_cost
 
 Relative reduction:
 
-```text
+```math
 reduction_ratio = (baseline_total - total_cost) / baseline_total
 ```
 

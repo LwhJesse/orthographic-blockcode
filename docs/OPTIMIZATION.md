@@ -15,14 +15,14 @@ split_group(group)
 
 A local variation is:
 
-```text
-J' = J + delta_J
+```math
+J' = J + \delta J
 ```
 
 and the measured improvement is:
 
-```text
-Delta_F = F(J', x) - F(J, x)
+```math
+\Delta F = F(J', x) - F(J, x)
 ```
 
 The current mutation utility mainly explores `change_code`. Future optimizers should add rule discovery, scope changes, group operations, beam search, and simulated annealing.

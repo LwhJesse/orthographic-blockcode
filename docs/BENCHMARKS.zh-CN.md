@@ -14,8 +14,8 @@
 
 加权 benchmark 目标可以写成：
 
-```text
-C_weighted(J) = sum_{k=1..K} alpha_k * C(J, X_k)
+```math
+C_{\mathrm{weighted}}(J) = \sum_{k=1}^{K} \alpha_k C(J, X_k)
 ```
 
 私人聊天、受版权保护文章、付费出版物和原始社交媒体 dump 不应提交到仓库。应使用公开/开放语料，或使用本地聚合统计。

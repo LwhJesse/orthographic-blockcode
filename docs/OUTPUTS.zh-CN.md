@@ -58,7 +58,7 @@ total_cost
 
 baseline 和块码成本之差：
 
-```text
+```math
 saved = baseline_total - total_cost
 ```
 
@@ -66,7 +66,7 @@ saved = baseline_total - total_cost
 
 相对减少比例：
 
-```text
+```math
 reduction_ratio = (baseline_total - total_cost) / baseline_total
 ```
 

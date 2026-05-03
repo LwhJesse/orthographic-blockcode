@@ -28,25 +28,25 @@ A word may have multiple segmentation paths. Each path generates a code. The lex
 
 The evaluator computes:
 
-```text
+```math
 F(J, x) = y
 ```
 
 A scalar objective may combine:
 
-```text
-L(J; X) = C_key(J, X)
-        + lambda * C_collision(J)
-        + mu * C_complexity(J)
-        + nu * C_ergonomics(J)
+```math
+L(J; X) = C_{\mathrm{key}}(J, X)
+        + \lambda C_{\mathrm{collision}}(J)
+        + \mu C_{\mathrm{complexity}}(J)
+        + \nu C_{\mathrm{ergonomics}}(J)
 ```
 
 ## 4. Search loop
 
 The search loop is:
 
-```text
-J -> F(J, x) -> J'
+```math
+J \rightarrow F(J, x) \rightarrow J'
 ```
 
 This turns code-table design into a measurable and searchable process.

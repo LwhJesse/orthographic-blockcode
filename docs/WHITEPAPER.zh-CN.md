@@ -28,25 +28,25 @@ ee, ea, th, sh, ch, tion, sion, ing, ment, able, ough, ight
 
 评估器计算：
 
-```text
+```math
 F(J, x) = y
 ```
 
 标量目标可以组合：
 
-```text
-L(J; X) = C_key(J, X)
-        + lambda * C_collision(J)
-        + mu * C_complexity(J)
-        + nu * C_ergonomics(J)
+```math
+L(J; X) = C_{\mathrm{key}}(J, X)
+        + \lambda C_{\mathrm{collision}}(J)
+        + \mu C_{\mathrm{complexity}}(J)
+        + \nu C_{\mathrm{ergonomics}}(J)
 ```
 
 ## 4. 搜索循环
 
 搜索循环是：
 
-```text
-J -> F(J, x) -> J'
+```math
+J \rightarrow F(J, x) \rightarrow J'
 ```
 
 这让码表设计变成可测量、可搜索的过程。
