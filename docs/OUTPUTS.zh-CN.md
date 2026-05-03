@@ -66,11 +66,7 @@ $$
 
 相对减少比例：
 
-$$
-reduction\_ratio
-=
-\frac{baseline\_total - total\_cost}{baseline\_total}
-$$
+$$reduction\_ratio=\frac{baseline\_total - total\_cost}{baseline\_total}$$
 
 ## 输出文件
 
